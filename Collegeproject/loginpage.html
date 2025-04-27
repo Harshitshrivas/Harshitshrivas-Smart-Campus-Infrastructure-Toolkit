@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCIT Login | Smart Campus Infrastructure Toolkit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --lighter: #ffffff;
+      --dark: #263238;
+      --gray: #607d8b;
+      --error: #e53935;
+      --success: #43a047;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .login-container {
+      display: flex;
+      width: 100%;
+    }
+
+    .login-hero {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .login-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -50px;
+      width: 300px;
+      height: 300px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .login-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .login-hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .login-hero-image {
+      max-width: 80%;
+      margin: 2rem auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .login-form-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem;
+      background-color: var(--lighter);
+    }
+
+    .login-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .login-header h2 {
+      color: var(--primary-dark);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-header p {
+      color: var(--gray);
+    }
+
+    .login-form {
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--gray);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+
+    .remember-me input {
+      margin-right: 8px;
+    }
+
+    .forgot-password {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+      color: var(--gray);
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--gray-light);
+    }
+
+    .login-divider span {
+      padding: 0 1rem;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius);
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      background-color: var(--light);
+    }
+
+    .social-btn i {
+      font-size: 1.2rem;
+    }
+
+    .google-btn {
+      color: #DB4437;
+    }
+
+    .microsoft-btn {
+      color: #0078D4;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--gray);
+    }
+
+    .signup-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      padding: 12px;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    .alert-error {
+      background-color: rgba(229, 57, 53, 0.1);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+
+    .alert-success {
+      background-color: rgba(67, 160, 71, 0.1);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 992px) {
+      .login-container {
+        flex-direction: column;
+      }
+      
+      .login-hero {
+        padding: 2rem;
+        text-align: center;
+      }
+      
+      .login-hero-image {
+        max-width: 60%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .login-hero,
+      .login-form-container {
+        padding: 1.5rem;
+      }
+      
+      .login-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .social-login {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="login-container">
+      <div class="login-hero">
+        <h1>Smart Campus Infrastructure Toolkit</h1>
+        <p>Sign in to manage your campus infrastructure with our powerful suite of tools and analytics.</p>
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Campus Infrastructure" class="login-hero-image">
+      </div>
+      
+      <div class="login-form-container">
+        <div class="login-header">
+          <h2>Welcome Back</h2>
+          <p>Sign in to access your dashboard</p>
+        </div>
+        
+        <div id="errorAlert" class="alert alert-error" style="display: none;">
+          <i class="fas fa-exclamation-circle"></i> Invalid email or password. Please try again.
+        </div>
+        
+        <form class="login-form" id="loginForm">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-with-icon">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+              <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            </div>
+          </div>
+          
+          <div class="remember-forgot">
+            <div class="remember-me">
+              <input type="checkbox" id="remember">
+              <label for="remember">Remember me</label>
+            </div>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Sign In</button>
+          
+          <div class="login-divider">
+            <span>OR</span>
+          </div>
+          
+          <div class="social-login">
+            <button type="button" class="social-btn google-btn">
+              <i class="fab fa-google"></i>
+              <span>Google</span>
+            </button>
+            <button type="button" class="social-btn microsoft-btn">
+              <i class="fab fa-microsoft"></i>
+              <span>Microsoft</span>
+            </button>
+          </div>
+          
+          <div class="signup-link">
+            Don't have an account? <a href="#">Request access</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <script>
+      // Password visibility toggle
+      const togglePassword = document.getElementById('togglePassword');
+      const password = document.getElementById('password');
+      
+      togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+      });
+      
+      // Form validation and redirection
+      const loginForm = document.getElementById('loginForm');
+      const errorAlert = document.getElementById('errorAlert');
+      
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('remember').checked;
+        
+        // Simple validation (replace with actual authentication)
+        if (email && password) {
+          // Store login state if "Remember me" is checked
+          if (rememberMe) {
+            localStorage.setItem('isLoggedIn', 'true');
+          } else {
+            sessionStorage.setItem('isLoggedIn', 'true');
+          }
+          
+          // Redirect to main page
+          window.location.href = 'college22.html';
+        } else {
+          // Show error message
+          errorAlert.style.display = 'block';
+          password.value = '';
+        }
+      });
+      
+      // Forgot password functionality
+      const forgotPassword = document.querySelector('.forgot-password');
+      forgotPassword.addEventListener('click', function(e) {
+        e.preventDefault();
+        const email = prompt('Please enter your email address to reset your password:');
+        if (email) {
+          alert(`Password reset link has been sent to ${email}`);
+        }
+      });
+  
+      // Check if user is already logged in (for demonstration)
+      window.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('isLoggedIn') === 'true' || 
+            sessionStorage.getItem('isLoggedIn') === 'true') {
+          window.location.href = 'college22.html';
+        }
+      });
+    </script>
+  </body>
+  </html>

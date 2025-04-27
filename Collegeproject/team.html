@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team | SCIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --lighter: #ffffff;
+      --dark: #263238;
+      --gray: #607d8b;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+    }
+
+    p.subtitle {
+      color: var(--gray);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-card {
+      background: var(--lighter);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary-light);
+      margin: 0 auto 1.5rem;
+    }
+
+    .team-name {
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .team-role {
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .team-bio {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">SCIT</div>
+  </header>
+
+  <div class="container">
+    <h1>Meet Our Team</h1>
+    <p class="subtitle">The passionate minds behind the Smart Campus Infrastructure Toolkit</p>
+
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-card">
+        <img src="Harshit.jpeg" alt="Harshit Shrivas" class="team-img">
+        <h3 class="team-name">Harshit Shrivas</h3>
+        <p class="team-role">CEO & Founder</p>
+        <p class="team-bio">Founder of Smart Campus Infrastructure Toolkit and Knowlege of DSA and Development. Create many projects and Work on it.</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/harshit-shrivas-85917a270/"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Harshitshrivas"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="team-card">
+        <img src="team2.jpeg" alt="Priyanshi Sondhiya" class="team-img">
+        <h3 class="team-name">Priyanshi Sondhiya</h3>
+        <p class="team-role">CTO</p>
+        <p class="team-bio">IoT and AI expert who designed SCIT’s core architecture, ensuring seamless integration with campus systems.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="team-card">
+        <img src="https://media-bom1-2.cdn.whatsapp.net/v/t61.24694-24/469093027_27640996945546117_5576872514687085567_n.jpg?ccb=11-4&oh=01_Q5Aa1QGdmnQhlB1U3I7JGwGICEx8OfFY8tgmJmWeLOajEcec6Q&oe=681A2442&_nc_sid=5e03e0&_nc_cat=110" alt="Lisa Johnson" class="team-img">
+        <h3 class="team-name">Geet Asrani</h3>
+        <p class="team-role">VP of Operations</p>
+        <p class="team-bio">Ensures SCIT’s solutions align with real-world campus needs through user research and stakeholder collaboration.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Smart Campus Infrastructure Toolkit (SCIT). All rights reserved.</p>
+  </footer>
+</body>
+</html>

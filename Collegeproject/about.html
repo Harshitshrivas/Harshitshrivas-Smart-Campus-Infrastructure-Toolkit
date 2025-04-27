@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Smart Campus Infrastructure Toolkit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --primary-light: #90caf9;
+      --secondary: #26a69a;
+      --secondary-dark: #00897b;
+      --accent: #ffa726;
+      --dark: #263238;
+      --light: #f5f5f5;
+      --lighter: #ffffff;
+      --gray: #607d8b;
+      --gray-light: #cfd8dc;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      --shadow: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-md: 0 10px 20px rgba(0,0,0,0.1);
+      --shadow-lg: 0 15px 25px rgba(0,0,0,0.1);
+      
+      --transition: all 0.3s ease;
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      background-color: var(--light);
+      color: var(--dark);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 1.5rem 2rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background-color: var(--light);
+      transform: skewY(-3deg);
+      z-index: 1;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    /* About Hero */
+    .about-hero {
+      text-align: center;
+      padding: 3rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .about-hero h1 {
+      font-size: 2.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .about-hero p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .breadcrumb a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      margin: 0 0.5rem;
+      color: var(--gray);
+    }
+
+    /* About Sections */
+    .about-section {
+      margin-bottom: 4rem;
+      background-color: var(--lighter);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .about-section:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-section h2 {
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .about-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background-color: var(--lighter);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border-left: 4px solid var(--primary);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-left-color: var(--secondary);
+    }
+
+    .feature-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-card h3 i {
+      color: var(--secondary);
+    }
+
+    /* Mission & Vision */
+    .mission-vision {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .mv-card {
+      background-color: var(--lighter);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .mv-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .mv-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mv-card h3 i {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(38, 166, 154, 0.1);
+      color: var(--secondary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--lighter);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-text {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: white;
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-col p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-col ul li a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-col ul li a i {
+      width: 20px;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.1);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background-color: white;
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      nav {
+        margin-top: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .about-hero h1 {
+        font-size: 2rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .about-hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .about-section {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="college22.html" class="logo">
+        <div class="logo-icon">SC</div>
+        <span>SCIT</span>
+      </a>
+      
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav>
+        <ul>
+          <li><a href="college22.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="index.html#features">Solutions</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="about-hero animate">
+      <div class="breadcrumb">
+        <a href="college22.html">Home</a>
+        <span>/</span>
+        <span>About SCIT</span>
+      </div>
+      <h1>About Smart Campus Infrastructure Toolkit</h1>
+      <p>Transforming educational spaces through intelligent, modular infrastructure solutions</p>
+    </div>
+
+    <div class="about-section animate delay-1">
+      <h2>Our Story</h2>
+      <p>The <strong>Smart Campus Infrastructure Toolkit (SCIT)</strong> was founded in 2018 with a vision to revolutionize campus management through technology. What began as a university research project has grown into a comprehensive platform serving over 150 educational institutions worldwide.</p>
+      <p>Our team of educators, technologists, and facilities experts recognized the challenges campuses face in managing physical spaces and resources efficiently. We set out to create solutions that would not only address these challenges but also pave the way for smarter, more sustainable campus environments.</p>
+    </div>
+
+    <div class="about-section animate delay-2">
+      <h2>Our Mission & Vision</h2>
+      <div class="mission-vision">
+        <div class="mv-card">
+          <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+          <p>To empower educational institutions with intelligent infrastructure solutions that enhance operational efficiency, reduce costs, and improve the learning environment for students and staff.</p>
+        </div>
+        <div class="mv-card">
+          <h3><i class="fas fa-eye"></i> Our Vision</h3>
+          <p>A future where every campus operates at peak efficiency, with technology seamlessly supporting education rather than complicating it, creating sustainable and inspiring learning environments.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section animate delay-1">
+      <h2>Key Features</h2>
+      <p>SCIT offers a comprehensive suite of tools designed to modernize campus infrastructure:</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3><i class="fas fa-calendar-alt"></i> Resource Management</h3>
+          <p>Track and optimize usage of labs, classrooms, and facilities with real-time monitoring and predictive analytics.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3><i class="fas fa-robot"></i> Automated Services</h3>
+          <p>IoT-based systems for smart lighting, HVAC controls, and energy management that adapt to usage patterns.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3><i class="fas fa-shield-alt"></i> Security & Surveillance</h3>
+          <p>Integrated access control, emergency alerts, and AI-powered monitoring for comprehensive campus safety.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3><i class="fas fa-comments"></i> Communication Hub</h3>
+          <p>Centralized platform for announcements, notifications, and campus-wide communication.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3><i class="fas fa-chart-line"></i> Analytics Dashboard</h3>
+          <p>Visualize data and gain actionable insights to optimize campus operations and resource allocation.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3><i class="fas fa-plug"></i> Integration Layer</h3>
+          <p>Seamless connectivity with existing systems through our comprehensive API and middleware solutions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section animate delay-2">
+      <h2>By The Numbers</h2>
+      <p>Our impact in transforming campus infrastructure:</p>
+      
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number">150+</div>
+          <div class="stat-text">Educational Institutions</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">23%</div>
+          <div class="stat-text">Average Energy Savings</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">98%</div>
+          <div class="stat-text">Client Satisfaction</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-number">500K+</div>
+          <div class="stat-text">Daily Active Users</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="logo">
+          <div class="logo-icon">SC</div>
+          <span>SCIT</span>
+        </div>
+        <p>Transforming educational spaces through intelligent, modular infrastructure solutions.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Solutions</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Space Management</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Attendance Systems</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Energy Management</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Safety & Security</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Our Team</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-phone"></i> (800) 555-SCIT</a></li>
+          <li><a href="#"><i class="fas fa-envelope"></i> info@scit.edu</a></li>
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Campus Drive, San Francisco</a></li>
+          <li><a href="index.html#contact"><i class="fas fa-comment"></i> Contact Form</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 Smart Campus Infrastructure Toolkit. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      const nav = document.querySelector('nav ul');
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          document.querySelector('nav ul').style.display = 'none';
+        }
+      });
+    });
+
+    // Responsive nav behavior
+    window.addEventListener('resize', function() {
+      const nav = document.querySelector('nav ul');
+      if (window.innerWidth > 768) {
+        nav.style.display = 'flex';
+      } else {
+        nav.style.display = 'none';
+      }
+    });
+
+    // Initialize nav for mobile
+    if (window.innerWidth <= 768) {
+      document.querySelector('nav ul').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
